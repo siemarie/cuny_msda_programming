@@ -1,0 +1,91 @@
+Week 5 R Quiz
+========================================================
+
+**1. Create the following five matrices in R:**
+
+```{r echo=TRUE}
+A <- matrix(c(1,-1,-1,-1),ncol=2,nrow=2)
+B <- matrix(c(2,-1,3,-2),ncol=2,nrow=2)
+C <- matrix(c(1,0,0,0),ncol=2,nrow=2)
+D <- matrix(c(0,1,0,1,0,0,0,0,1),ncol=3,nrow=3)
+E <- matrix(c(1,0,0,0,0,1,0,1,0),ncol=3,nrow=3)
+
+A
+B
+C
+D
+E
+```
+
+**2. Research the definition of an idempotent matrix. Use the appropriate matrix multiplication techniques in R to determine which of the five matrices above are idempotent.**
+
+Matrices are idempotent if the product of the matrix and itself are equal to the original matrix (A = A*A).
+
+
+```{r echo=TRUE}
+A2 <- A %*% A
+B2 <- B %*% B
+C2 <- C %*% C
+D2 <- D %*% D
+E2 <- E %*% E
+
+## Compare A to A*A. If the two are equal, A is an idempotent matrix.
+identical(A,A2)
+
+## Compare B to B*B. If the two are equal, B is an idempotent matrix.
+identical(B,B2)
+
+## Compare C to C*C. If the two are equal, C is an idempotent matrix.
+identical(C,C2)
+
+## Compare D to D*D. If the two are equal, D is an idempotent matrix.
+identical(D,D2)
+
+## Compare E to E*E. If the two are equal, E is an idempotent matrix.
+identical(E,E2)
+```
+
+C, D and E are idempotent.
+
+**3. Research the definition of an orthogonal matrix. Use the appropriate matrix multiplication techniques in R to determine which of the five matrices above are orthogonal.**
+
+Matrices are orthogonal if the product of the matrix and the matrix transposed equal an identity matrix (A * A^t = I).
+
+``` {r echo=TRUE}
+## Create identity matrices.
+I2 <- matrix(c(1,0,0,1),nrow=2)
+I3 <- matrix(c(1,0,0,0,1,0,0,0,1),nrow=3)
+
+A3 <- A * t(A)
+B3 <- B * t(B)
+C3 <- C * t(C)
+D3 <- D * t(D)
+E3 <- E * t(E)
+
+## Compare A3 to I2. If the two are equal, A is an orthogonal matrix.
+identical(A3,I2)
+
+## Compare B3 to I2. If the two are equal, B is an orthogonal matrix.
+identical(B3,I2)
+
+## Compare C3 to I2. If the two are equal, C is an orthogonal matrix.
+identical(C3,I2)
+
+## Compare D3 to I3. If the two are equal, D is an orthogonal matrix.
+identical(D3,I3)
+
+## Compare E3 to I3. If the two are equal, E is an orthogonal matrix.
+identical(E3,I3)
+
+```
+
+None of these matrices are orthogonal.
+
+**4. Illustrate the creation of a list that contains a vector, a matrix, an array, a dataframe, and another list. (You may use one of the matrices above if you wish to do so. You'll need to create the other items yourself.)**
+
+```{r echo=TRUE}
+
+myList = list("vector",A,array(1:6),data.frame(),list(1,2,3));
+myList
+
+```
