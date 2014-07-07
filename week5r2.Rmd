@@ -1,0 +1,42 @@
+Week 5 R Assignment
+========================================================
+
+**Discuss the difference between appending and preallocating in R. Which is more efficient? Create code to illustrate both appending and preallocating for vectors, dataframes, and lists. Be sure also to illustrate data type assignments (numeric, character, and factor). You may wish to investigate the vector(), data.frame(), and list() functions.**
+
+Preallocating is more efficient. It defines the size of an object before its values are placed instead of using looping or another technique to append values.
+
+```{r echo=TRUE}
+
+## Preallocation example
+myVector <- vector(mode="list", length=2)
+myVector[[1]]="object 1"
+myVector[[2]]=2
+
+myVector
+
+## Appending example
+newList <- list();
+i<-1;
+while(i<3) {
+  newList<-append(newList,i); 
+  i<-i+1;
+}
+
+newList
+
+```
+
+**Illustrate how to load the Boston dataset from the MASS package, choose a few interesting columns, and create a new dataframe that only contains the columns you want. Give the columns better names than the ones they come with. This document gives details on the dataset and its columns.**
+
+
+```{r echo=TRUE}
+
+install.packages("MASS")
+
+library("MASS")
+
+BostonNew <- data.frame(Boston$crim,Boston$ptratio)
+colnames(BostonNew) <-c("Crime Rate", "Student:Teacher Ratio")
+
+summary(BostonNew)
+```
