@@ -23,3 +23,5 @@ matrix <- rbind(row1,row2,row3,row4);
 print(simplexMethod(matrix))
 
 ```
+
+The maximum profit is $4120 when 380 of Product A are produced.
