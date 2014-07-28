@@ -1,0 +1,64 @@
+Week 8 - R Quiz
+========================================================
+
+**1. Illustrate how to add element by element the contents of two numeric vectors of equal length using a for loop. Comment on how this differs from the easier vector addition method preferred in R.**
+
+```{r}
+v1 <- floor(rnorm(10,12,2))
+v2 <- floor(rnorm(10,12,2))
+
+newVector <- c()
+  
+if(length(v1)==length(v2)) {
+  for(i in 1:length(v1)) {
+    newVector[i]<-v1[i]+v2[i]
+  }
+}
+
+newVector
+
+```
+
+Adding vectors element by element using a for loop is significantly more complicated than the simple vector addition method available in R:
+
+```{r}
+v1 <- floor(rnorm(10,12,2))
+v2 <- floor(rnorm(10,12,2))
+
+newVector <- v1+v2
+newVector
+
+```
+
+**2. Write code that uses a while loop that determines how many "heads" in a row an arbitrary vector of coin flips has starting at the beginning. An example of a vector input is c("heads","heads","tails","heads"). Your code should give an answer of 2 when run on this vector. Note that a vector that begins with "tails" should give an answer of 0.**
+
+```{r}
+v3 <- c("heads","heads","tails","heads")
+
+last <- "heads"
+count <- 0
+index <- 1
+
+while(last=="heads") {
+  if(index < length(v3)) {
+    if(v3[index]=="heads") {
+      count <- count + 1
+      index <- index + 1
+    } else {
+      last <- "tails"
+    } 
+  }
+}
+count
+```
+
+**3. Use a for loop running over all 100 integers from 1 to 100 and the ifelse() function to add only the odd numbers from 1 to 100. BONUS: Can you show how to accomplish the same thing without using a loop?**
+
+```{r}
+ints <- c(1:100)
+total <- 0
+for(i in ints) {
+  total <- ifelse(i %% 2 == 0, total + i, total) 
+}
+total
+```

@@ -1,0 +1,125 @@
+Week 8 - R Assignment
+========================================================
+
+**For your assignment, you will investigate a probability puzzle. Suppose a coin is flipped at random 100 times. We are curious to know what the probability is that there will be at least seven in a row of the same thing (either heads or tails) in the sequence of 100 flips. Run a simulation to estimate the probability by performing the following steps.**
+
+**1. Use the rbinom() function with probability 0.5 to simulate a string of 100 coin flips.** 
+
+``` {r}
+
+## define a vector "flips" made up of the outcome of 100 random coin flips with each 0 representing an outcome of "tails" and each 1 representing an outcome of "heads"
+
+flips <- rbinom(100,1,.5)
+
+```
+
+**2. Write code that will test the sequence you just generated to determine whether there is a string of at least seven in a row of either heads or tails. (You can choose whether to consider 0 heads and 1 tails or vice versa.)**
+
+``` {r}
+count <- 0
+occurences <- 0
+last <- 2
+for(i in flips) {
+  count <- ifelse(i==last, count+1, 0)
+  if(count==7) {
+    occurences <- occurences + 1
+  }
+  last <- i
+}
+
+
+```
+
+**3. Enclose the code for steps 1 and 2 in a loop so that you can run it a bunch of times. Use this loop to determine the proportion of 100-toss sequences that actually have at least seven in a row of the same thing. This is your estimate of the probability.** 
+
+``` {r}
+tests<-0
+a<-1
+prob <-c();
+
+while(a<=tests) {
+  flips <- rbinom(100,1,.5)
+  count <- 0
+  occurences <- 0
+  last <- 2
+  for(i in flips) {
+    count <- ifelse(i==last, count+1, 0)
+    if(count==7) {
+      occurences <- occurences + 1
+    }
+    last <- i
+  }
+  a <- a + 1
+  prob <- c(prob, occurences)
+}
+print(prob)
+```
+
+**4. Run the loop with 10 such sequences. Then run it with 100, and 1000. (If you're really brave, run it more times still...) Comment both on how well your estimate seems to converge to a single answer and also how R performs at these loops. Do you notice a significant slowdown at 1000 sequences? What about 10,000? Where does your machine start really to grind to a halt?** 
+
+``` {r}
+tests<-10
+a<-1
+prob <-c();
+
+while(a<=tests) {
+    flips <- rbinom(100,1,.5)
+    count <- 0
+    occurences <- 0
+    last <- 2
+    for(i in flips) {
+        count <- ifelse(i==last, count+1, 0)
+        if(count==7) {
+            occurences <- occurences + 1
+        }
+        last <- i
+    }
+    a <- a + 1
+    prob <- c(prob, occurences)
+}
+print(prob)
+
+tests<-100
+a<-1
+prob <-c();
+
+while(a<=tests) {
+    flips <- rbinom(100,1,.5)
+    count <- 0
+    occurences <- 0
+    last <- 2
+    for(i in flips) {
+        count <- ifelse(i==last, count+1, 0)
+        if(count==7) {
+            occurences <- occurences + 1
+        }
+        last <- i
+    }
+    a <- a + 1
+    prob <- c(prob, occurences)
+}
+print(prob)
+
+tests<-1000
+a<-1
+prob <-c();
+
+while(a<=tests) {
+    flips <- rbinom(100,1,.5)
+    count <- 0
+    occurences <- 0
+    last <- 2
+    for(i in flips) {
+        count <- ifelse(i==last, count+1, 0)
+        if(count==7) {
+            occurences <- occurences + 1
+        }
+        last <- i
+    }
+    a <- a + 1
+    prob <- c(prob, occurences)
+}
+print(prob)
+```
+
+There is slight slowing at 1000 and noticeable slowing at 10,000. I could see how this could easily cause problems with large samples of data.
